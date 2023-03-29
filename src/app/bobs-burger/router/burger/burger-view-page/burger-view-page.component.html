@@ -1,0 +1,11 @@
+<div>
+  <button type="button" (click)="doBack()">Back</button>
+</div>
+<bobs-burger-burger-view
+  *ngIf="data$ | async as data; else loading"
+  [data]="data"
+></bobs-burger-burger-view>
+
+<ng-template #loading>
+  <div>loading...</div>
+</ng-template>

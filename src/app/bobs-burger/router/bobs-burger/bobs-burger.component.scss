@@ -1,0 +1,28 @@
+a {
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+ul,
+li {
+  display: block;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid #000; */
+}
+
+.cha,
+.ep,
+.bg {
+  font-size: bold;
+  border: 5px solid #f0262a;
+  border-radius: 2rem;
+  padding: 5px;
+  background-color: #fcdd60;
+  color: #f0262a;
+}
