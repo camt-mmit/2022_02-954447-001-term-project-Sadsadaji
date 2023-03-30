@@ -1,11 +1,13 @@
-<bobs-burger-characters-list
-  *ngIf="data$ | async as data; else loading"
-  [data]="data"
-  [search]="searchData"
-  (searchChange)="search($event)"
-  (itemSelected)="doSelect($event)"
-></bobs-burger-characters-list>
+<html>
+  <bobs-burger-characters-list
+    *ngIf="data$ | async as data; else loading"
+    [data]="data"
+    [search]="searchData"
+    (searchChange)="search($event)"
+    (itemSelected)="doSelect($event)"
+  ></bobs-burger-characters-list>
 
-<ng-template #loading>
-  <div>loading...</div>
-</ng-template>
+  <ng-template #loading>
+    <div>loading...</div>
+  </ng-template>
+</html>

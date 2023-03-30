@@ -24,7 +24,7 @@ export type Characters = {
   age: string;
   gender: string | undefined;
   occupation: string | undefined;
-  relatives: string[] | undefined;
+  relatives: string[];
   firstEpisode: string | undefined;
   voicedBy: string | undefined;
   wikiUrl: URL;

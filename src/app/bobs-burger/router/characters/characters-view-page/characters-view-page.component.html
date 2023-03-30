@@ -1,11 +1,13 @@
-<div>
-  <button type="button" (click)="doBack()">Back</button>
-</div>
-<bobs-burger-characters-view
-  *ngIf="data$ | async as data; else loading"
-  [data]="data"
-></bobs-burger-characters-view>
+<html>
+  <div>
+    <button type="button" (click)="doBack()">Back</button>
+  </div>
+  <bobs-burger-characters-view
+    *ngIf="data$ | async as data; else loading"
+    [data]="data"
+  ></bobs-burger-characters-view>
 
-<ng-template #loading>
-  <div>loading...</div>
-</ng-template>
+  <ng-template #loading>
+    <div>loading...</div>
+  </ng-template>
+</html>

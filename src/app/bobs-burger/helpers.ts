@@ -26,7 +26,7 @@ export function parseCharacters(obj: RawCharacters): Characters {
     ...obj,
     url: new URL(obj.url),
     image: new URL(obj.image),
-    relatives: obj.relatives.map(),
+    relatives: obj.relatives.map((value) => String(value)),
   };
 }
 
