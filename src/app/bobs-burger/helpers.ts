@@ -6,18 +6,11 @@ import {
   RawBurgers,
   RawCharacters,
   RawEpisodes,
-  RawList,
 } from './models';
 
-export function parseList<I, O>(
-  obj: RawList<I>,
-  parser: (value: I) => O,
-): List<O> {
+export function parseList<I, O>(arrs: I[], parser: (value: I) => O): List<O> {
   return {
-    ...obj,
-    next: obj.next ? new URL(obj.next) : null,
-    previous: obj.previous ? new URL(obj.previous) : null,
-    results: obj.results.map((value) => parser(value)),
+    results: arrs.map((value) => parser(value)),
   };
 }
 //Characters
@@ -30,9 +23,7 @@ export function parseCharacters(obj: RawCharacters): Characters {
   };
 }
 
-export function parseCharactersList(
-  obj: RawList<RawCharacters>,
-): List<Characters> {
+export function parseCharactersList(obj: RawCharacters[]): List<Characters> {
   return parseList(obj, parseCharacters);
 }
 //Episodes
@@ -43,7 +34,7 @@ export function parseEpisodes(obj: RawEpisodes): Episodes {
   };
 }
 
-export function parseEpisodesList(obj: RawList<RawEpisodes>): List<Episodes> {
+export function parseEpisodesList(obj: RawEpisodes[]): List<Episodes> {
   return parseList(obj, parseEpisodes);
 }
 //Burgers
@@ -55,6 +46,6 @@ export function parseBurger(obj: RawBurgers): Burgers {
   };
 }
 
-export function parseBurgerList(obj: RawList<RawBurgers>): List<Burgers> {
+export function parseBurgerList(obj: RawBurgers[]): List<Burgers> {
   return parseList(obj, parseBurger);
 }

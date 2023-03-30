@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, switchMap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 
 import { CharactersListComponent } from '../../../characters/characters-list/characters-list.component';
 import { List, Characters, SearchData } from '../../../models';
@@ -26,10 +26,23 @@ export class CharactersListPageComponent {
     private readonly router: Router,
   ) {
     this.searchData = route.snapshot.queryParams;
-    this.data$ = route.queryParams.pipe(
-      switchMap((params) => {
-        console.debug(params);
-        return dataService.getAll(params);
+
+    this.data$ = dataService.getAll().pipe(
+      switchMap((list) => {
+        return route.queryParams.pipe(
+          map((params) => {
+            if (params['search']) {
+              const regex = new RegExp(params['search'], 'i');
+              const results = list.results;
+              return {
+                results: results.filter((value) => {
+                  return value.name.search(regex) >= 0;
+                }),
+              };
+            }
+            return list;
+          }),
+        );
       }),
     );
   }
@@ -43,7 +56,7 @@ export class CharactersListPageComponent {
   protected doSelect(item: Characters): void {
     if (item.url) {
       const paths = item.url.pathname.split('/');
-      const id = paths[paths.length - 2];
+      const id = paths[paths.length - 1];
 
       this.router.navigate([id], {
         relativeTo: this.route,

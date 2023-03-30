@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { parseBurgerList, parseBurger } from '../helpers';
-import { List, Burgers, RawList, RawBurgers, SearchData } from '../models';
+import { List, Burgers, RawBurgers, SearchData } from '../models';
 
 const url = 'https://bobsburgers-api.herokuapp.com/burgerOfTheDay';
 
@@ -14,7 +14,7 @@ export class BurgerService {
 
   getAll(searchData?: SearchData): Observable<List<Burgers>> {
     return this.http
-      .get<RawList<RawBurgers>>(url, { params: searchData })
+      .get<RawBurgers[]>(url, { params: searchData })
       .pipe(map((obj) => parseBurgerList(obj)));
   }
 

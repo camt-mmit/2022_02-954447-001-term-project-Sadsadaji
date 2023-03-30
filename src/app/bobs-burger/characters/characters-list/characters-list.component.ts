@@ -76,11 +76,7 @@ export class CharactersListComponent implements OnInit {
     this.searchChange.emit(searchData);
   }
 
-  protected doSelect(item: Characters): void {
-    /* const id = url.pathname.replace(/\/$/, '').split('/').pop();
-    if (id) {
-      this.itemSelected.emit(id);
-    } */
-    this.itemSelected.emit(item);
+  protected doSelect(id: Characters): void {
+    this.itemSelected.emit(id);
   }
 }

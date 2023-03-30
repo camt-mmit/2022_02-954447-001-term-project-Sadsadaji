@@ -3,13 +3,13 @@ type Raw<T, KI extends keyof T, O> = {
 };
 
 export type List<T> = {
-  count: number;
-  next: URL | null;
-  previous: URL | null;
+  // count: number;
+  // next: URL | null;
+  // previous: URL | null;
   results: T[];
 };
 
-export type RawList<T> = Raw<List<T>, 'next' | 'previous', string | null>;
+export type RawList<T> = List<T>;
 
 export type SearchData = {
   search?: string;

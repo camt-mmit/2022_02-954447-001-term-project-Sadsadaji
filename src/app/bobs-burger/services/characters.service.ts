@@ -2,13 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { parseCharactersList, parseCharacters } from '../helpers';
-import {
-  List,
-  Characters,
-  RawList,
-  RawCharacters,
-  SearchData,
-} from '../models';
+import { List, Characters, RawCharacters, SearchData } from '../models';
 
 const url = 'https://bobsburgers-api.herokuapp.com/characters';
 
@@ -20,7 +14,7 @@ export class CharactersService {
 
   getAll(searchData?: SearchData): Observable<List<Characters>> {
     return this.http
-      .get<RawList<RawCharacters>>(url, { params: searchData })
+      .get<RawCharacters[]>(url, { params: searchData })
       .pipe(map((obj) => parseCharactersList(obj)));
   }
 
